@@ -2,9 +2,54 @@
   "name": "t4",
   "version": "0.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next",
+    "build": "next build",
+    "clean": "rm -fr out .next",
+    "healthier": "healthier",
+    "start": "next start"
   },
   "license": "AGPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/millette/t4.git"
+  },
+  "author": {
+    "name": "Robin Millette",
+    "email": "robin@millette.info",
+    "url": "http://robin.millette.info"
+  },
+  "engines": {
+    "node": ">= 10.16.3"
+  },
+  "lint-staged": {
+    "*.{js,json,md,mdx}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "prettier": {
+    "semi": false,
+    "trailingComma": "es5",
+    "arrowParens": "always"
+  },
+  "eslintConfig": {
+    "rules": {
+      "react/react-in-jsx-scope": "off"
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/millette/t4/issues"
+  },
+  "homepage": "https://github.com/millette/t4#readme",
   "dependencies": {
     "@mdx-js/mdx": "^1.4.5",
     "@mdx-js/react": "^1.4.5",
@@ -13,5 +58,11 @@
     "next": "^9.0.6",
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
+  },
+  "devDependencies": {
+    "healthier": "^3.2.0",
+    "husky": "^2.7.0",
+    "lint-staged": "^9.2.5",
+    "prettier": "^1.18.2"
   }
 }

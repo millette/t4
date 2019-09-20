@@ -21,6 +21,12 @@
   "engines": {
     "node": ">= 10.16.3"
   },
+  "healthier": {
+    "parser": "babel-eslint",
+    "globals": [
+      "fetch"
+    ]
+  },
   "lint-staged": {
     "*.{js,json,md,mdx}": [
       "prettier --write",
@@ -60,6 +66,7 @@
     "react-dom": "^16.9.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
     "healthier": "^3.2.0",
     "husky": "^2.7.0",
     "lint-staged": "^9.2.5",

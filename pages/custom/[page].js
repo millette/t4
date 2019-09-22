@@ -8,7 +8,18 @@ import "isomorphic-unfetch"
 // self
 import Clock from "../../components/clock"
 
-const components = { Clock }
+const a = ({ href, children }) =>
+  href.indexOf("://") === -1 ? (
+    <Link as={href} href="/custom/[page]">
+      <a>{children}</a>
+    </Link>
+  ) : (
+    <a target="_blank" rel="noopener noreferrer" href={href}>
+      <sup>⧉</sup>&nbsp;{children}
+    </a>
+  )
+
+const components = { Clock, a }
 
 const AnError = ({ statusCode, page }) => {
   if (statusCode !== 404) return <Error statusCode={statusCode} />
@@ -57,6 +68,7 @@ CustomPage.getInitialProps = async (o) => {
     query: { page },
   } = o
   console.log(!req, typeof req, page)
+  // FIXME: guard against system pages: custom, ed, etc.
   const res2 = await fetch(`http://localhost:3000/${page}.mdx`)
   if (res2.ok) {
     const c = await res2.text()

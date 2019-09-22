@@ -1,11 +1,25 @@
+// npm
+import Router from "next/router"
 import Link from "next/link"
 import "isomorphic-unfetch"
 
 const EdPage = ({ MDXContent }) => {
   const handleSubmit = (ev) => {
     ev.preventDefault()
-    const d = new window.FormData(ev.target).get("cnt")
-    console.log("DD", d)
+    const cnt = new window.FormData(ev.target).get("cnt")
+    fetch(ev.target.getAttribute("action"), {
+      headers: {
+        "content-type": "application/json",
+      },
+      method: ev.target.getAttribute("method"),
+      body: JSON.stringify({ cnt }),
+    })
+      .then((res) => res.ok && res.json())
+      .then((json) => {
+        console.log("json", json)
+        if (json && json.ok) Router.push("/")
+      })
+      .catch(console.error)
   }
   return (
     <div>
@@ -15,7 +29,7 @@ const EdPage = ({ MDXContent }) => {
           <a>Top</a>
         </Link>
       </p>
-      <form onSubmit={handleSubmit}>
+      <form method="post" action="/api/c1" onSubmit={handleSubmit}>
         <textarea name="cnt" defaultValue={MDXContent} />
         <button>Save</button>
       </form>

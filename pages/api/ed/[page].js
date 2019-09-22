@@ -2,8 +2,6 @@
 import fs from "fs"
 
 const ApiC1 = ({ method, body, query: { page } }, res) => {
-  // console.log('REST', Object.keys(rest))
-  // console.log('QUERY', query)
   if (method !== "POST")
     return res.status(405).json({ error: "Method Not Allowed", method })
   const { cnt } = body

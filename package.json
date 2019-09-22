@@ -27,12 +27,6 @@
       "fetch"
     ]
   },
-  "lint-staged": {
-    "*.{js,json,md,mdx}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

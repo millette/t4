@@ -4,7 +4,7 @@ import Link from "next/link"
 import PropTypes from "prop-types"
 import "isomorphic-unfetch"
 
-const EdPage = ({ MDXContent, page }) => {
+const CustomEditPage = ({ MDXContent, page }) => {
   const handleSubmit = (ev) => {
     ev.preventDefault()
     const cnt = new window.FormData(ev.target).get("cnt")
@@ -44,12 +44,12 @@ const EdPage = ({ MDXContent, page }) => {
   )
 }
 
-EdPage.propTypes = {
+CustomEditPage.propTypes = {
   MDXContent: PropTypes.string.isRequired,
   page: PropTypes.string.isRequired,
 }
 
-EdPage.getInitialProps = async (o) => {
+CustomEditPage.getInitialProps = async (o) => {
   const {
     req,
     query: { page },
@@ -60,4 +60,4 @@ EdPage.getInitialProps = async (o) => {
   return { MDXContent: c, page }
 }
 
-export default EdPage
+export default CustomEditPage

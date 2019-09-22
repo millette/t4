@@ -1,4 +1,5 @@
-import Error from "next/error"
+// npm
+import ErrorPage from "next/error"
 import Link from "next/link"
 import MDXRuntime from "mdx-runtime-slim"
 import { MDXProvider } from "@mdx-js/react"
@@ -22,7 +23,7 @@ const a = ({ href, children }) =>
 const components = { Clock, a }
 
 const AnError = ({ statusCode, page }) => {
-  if (statusCode !== 404) return <Error statusCode={statusCode} />
+  if (statusCode !== 404) return <ErrorPage statusCode={statusCode} />
   return (
     <div>
       <code>{page}</code> doesn't exist.{" "}
@@ -67,7 +68,6 @@ CustomPage.getInitialProps = async (o) => {
     res,
     query: { page },
   } = o
-  console.log(!req, typeof req, page)
   // FIXME: guard against system pages: custom, ed, etc.
   const res2 = await fetch(`http://localhost:3000/${page}.mdx`)
   if (res2.ok) {

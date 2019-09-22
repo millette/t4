@@ -1,14 +1,12 @@
 // npm
-import Error from "next/error"
+import ErrorPage from "next/error"
 import Router from "next/router"
 import Link from "next/link"
 import PropTypes from "prop-types"
 import "isomorphic-unfetch"
 
 const CustomEditPage = ({ MDXContent, page, errorCode }) => {
-  if (errorCode) {
-    return <Error statusCode={errorCode} />
-  }
+  if (errorCode) return <ErrorPage statusCode={errorCode} />
 
   const handleSubmit = (ev) => {
     ev.preventDefault()
@@ -22,8 +20,12 @@ const CustomEditPage = ({ MDXContent, page, errorCode }) => {
     })
       .then((res) => res.ok && res.json())
       .then((json) => {
-        console.log("json", json)
-        if (json && json.ok) Router.push(`/custom/${page}`)
+        if (!json || !json.ok) {
+          const err = new Error("Oupsy")
+          err.json = json
+          throw err
+        }
+        Router.push(`/custom/${page}`)
       })
       // FIXME: Show error to user
       .catch(console.error)
@@ -66,7 +68,6 @@ CustomEditPage.getInitialProps = async (o) => {
     res,
     query: { page },
   } = o
-  console.log(!req, typeof req)
   // FIXME: guard against system pages: custom, ed, etc.
   const res2 = await fetch(`http://localhost:3000/${page}.mdx`)
   if (res2.ok) {

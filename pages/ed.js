@@ -1,6 +1,7 @@
 // npm
 import Router from "next/router"
 import Link from "next/link"
+import PropTypes from "prop-types"
 import "isomorphic-unfetch"
 
 const EdPage = ({ MDXContent }) => {
@@ -35,6 +36,10 @@ const EdPage = ({ MDXContent }) => {
       </form>
     </div>
   )
+}
+
+EdPage.propTypes = {
+  MDXContent: PropTypes.string.isRequired,
 }
 
 EdPage.getInitialProps = async ({ req }) => {

@@ -1,7 +1,8 @@
 import Link from "next/link"
-import "isomorphic-unfetch"
-import MDX from "mdx-runtime-slim"
+import MDXRuntime from "mdx-runtime-slim"
 import { MDXProvider } from "@mdx-js/react"
+import PropTypes from "prop-types"
+import "isomorphic-unfetch"
 
 const FrontPage = ({ MDXContent }) => (
   <MDXProvider>
@@ -12,7 +13,7 @@ const FrontPage = ({ MDXContent }) => (
           <a>Earth</a>
         </Link>
       </p>
-      <MDX>{MDXContent}</MDX>
+      <MDXRuntime>{MDXContent}</MDXRuntime>
       <p>
         <Link href="/ed">
           <a>Edit</a>
@@ -21,6 +22,10 @@ const FrontPage = ({ MDXContent }) => (
     </div>
   </MDXProvider>
 )
+
+FrontPage.propTypes = {
+  MDXContent: PropTypes.string.isRequired,
+}
 
 FrontPage.getInitialProps = async ({ req }) => {
   console.log(!req, typeof req)

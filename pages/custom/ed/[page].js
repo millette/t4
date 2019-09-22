@@ -1,10 +1,15 @@
 // npm
+import Error from "next/error"
 import Router from "next/router"
 import Link from "next/link"
 import PropTypes from "prop-types"
 import "isomorphic-unfetch"
 
-const CustomEditPage = ({ MDXContent, page }) => {
+const CustomEditPage = ({ MDXContent, page, errorCode }) => {
+  if (errorCode) {
+    return <Error statusCode={errorCode} />
+  }
+
   const handleSubmit = (ev) => {
     ev.preventDefault()
     const cnt = new window.FormData(ev.target).get("cnt")
@@ -52,12 +57,23 @@ CustomEditPage.propTypes = {
 CustomEditPage.getInitialProps = async (o) => {
   const {
     req,
+    res,
     query: { page },
   } = o
   console.log(!req, typeof req)
-  const res = await fetch(`http://localhost:3000/${page}.mdx`)
-  const c = await res.text()
-  return { MDXContent: c, page }
+  const res2 = await fetch(`http://localhost:3000/${page}.mdx`)
+  if (res2.ok) {
+    const c = await res2.text()
+    return { MDXContent: c, page }
+  }
+
+  if (res2.status === 404) return { MDXContent: `# ${page}`, page }
+  if (res) res.statusCode = 500
+  return {
+    errorCode: 500,
+    MDXContent: "",
+    page,
+  }
 }
 
 export default CustomEditPage

@@ -1,4 +1,4 @@
-// import Error from 'next/error'
+import Error from "next/error"
 import Link from "next/link"
 import MDXRuntime from "mdx-runtime-slim"
 import { MDXProvider } from "@mdx-js/react"
@@ -10,14 +10,17 @@ import Clock from "../../components/clock"
 
 const components = { Clock }
 
-const AnError = ({ statusCode, page }) => (
-  <div>
-    <code>{page}</code> doesn't exist.{" "}
-    <Link href={`/custom/ed/${page}`}>
-      <a>Create it?</a>
-    </Link>
-  </div>
-)
+const AnError = ({ statusCode, page }) => {
+  if (statusCode !== 404) return <Error statusCode={statusCode} />
+  return (
+    <div>
+      <code>{page}</code> doesn't exist.{" "}
+      <Link href={`/custom/ed/${page}`}>
+        <a>Create it?</a>
+      </Link>
+    </div>
+  )
+}
 
 const CustomPage = ({ MDXContent, page, errorCode }) => {
   if (errorCode) return <AnError page={page} statusCode={errorCode} />
@@ -55,7 +58,12 @@ CustomPage.getInitialProps = async (o) => {
   } = o
   console.log(!req, typeof req, page)
   const res2 = await fetch(`http://localhost:3000/${page}.mdx`)
-  if (!res2.ok) {
+  if (res2.ok) {
+    const c = await res2.text()
+    return { MDXContent: c, page }
+  }
+
+  if (res2.status === 404) {
     if (res) res.statusCode = 404
     return {
       errorCode: 404,
@@ -63,9 +71,12 @@ CustomPage.getInitialProps = async (o) => {
       page,
     }
   }
-  console.log("RES", res2.ok)
-  const c = await res2.text()
-  return { MDXContent: c, page }
+  if (res) res.statusCode = 500
+  return {
+    errorCode: 500,
+    MDXContent: "",
+    page,
+  }
 }
 
 export default CustomPage

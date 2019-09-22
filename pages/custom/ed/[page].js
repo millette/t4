@@ -25,6 +25,7 @@ const CustomEditPage = ({ MDXContent, page, errorCode }) => {
         console.log("json", json)
         if (json && json.ok) Router.push(`/custom/${page}`)
       })
+      // FIXME: Show error to user
       .catch(console.error)
   }
   return (
@@ -42,8 +43,13 @@ const CustomEditPage = ({ MDXContent, page, errorCode }) => {
           name="cnt"
           defaultValue={MDXContent}
         />
-        <br />
-        <button>Save</button>
+        <p>
+          <button>Save</button>
+        </p>
+        <p>
+          Note that only pages in <code>/custom/</code> can be edited and linked
+          to.
+        </p>
       </form>
     </div>
   )
@@ -61,6 +67,7 @@ CustomEditPage.getInitialProps = async (o) => {
     query: { page },
   } = o
   console.log(!req, typeof req)
+  // FIXME: guard against system pages: custom, ed, etc.
   const res2 = await fetch(`http://localhost:3000/${page}.mdx`)
   if (res2.ok) {
     const c = await res2.text()

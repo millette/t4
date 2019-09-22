@@ -9,7 +9,7 @@ import Clock from "../../components/clock"
 
 const components = { Clock }
 
-const FrontPage = ({ MDXContent }) => (
+const FrontPage = ({ MDXContent, page }) => (
   <MDXProvider components={components}>
     <div>
       <p>
@@ -20,7 +20,7 @@ const FrontPage = ({ MDXContent }) => (
       </p>
       <MDXRuntime>{MDXContent}</MDXRuntime>
       <p>
-        <Link href="/ed">
+        <Link href={`/custom/ed/${page}`}>
           <a>Edit</a>
         </Link>
       </p>
@@ -40,7 +40,7 @@ FrontPage.getInitialProps = async (o) => {
   console.log(!req, typeof req, page)
   const res = await fetch(`http://localhost:3000/${page}.mdx`)
   const c = await res.text()
-  return { MDXContent: c }
+  return { MDXContent: c, page }
 }
 
 export default FrontPage

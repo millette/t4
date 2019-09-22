@@ -4,13 +4,8 @@ import { MDXProvider } from "@mdx-js/react"
 import PropTypes from "prop-types"
 import "isomorphic-unfetch"
 
-const Clock = (props) => {
-  return (
-    <div>
-      <h3>I am a {props.kind || ""} clock</h3>
-    </div>
-  )
-}
+// self
+import Clock from "../../components/clock"
 
 const components = { Clock }
 

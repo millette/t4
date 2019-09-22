@@ -47,6 +47,12 @@ Le contenu en `MDX` est très puissant puisqu'en bout de ligne il est converti e
 
 ## MDX vs Markdown
 
+<https://mdxjs.com/>
+
+> Markdown for the component era
+
+> MDX is an authorable format that lets you seamlessly write JSX in your Markdown documents. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast 🚀.
+
 Si vous connaissez `markdown` vous serez à l'aise ici. `MDX` c'est grosso-modo du Markdown dans lequel on peut utiliser des composantes `React`. Une fois processé, un fichier MDX devient lui-même un composante `React`.
 
 ### Liens

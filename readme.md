@@ -41,7 +41,7 @@ Le mode `build` est plus rapide à l'usage tandis que le mode `dev` permet d'éd
 
 Les pages sous `/custom/` sont éditables dans un beau (plain) textarea. Elles sont sauvées dans `public/` qui contient les fichiers publiques. C'est mon _API_ temporairement, vous me pardonnerez.
 
-### DANGERUEX: MDX = React = JS
+### DANGEREUX: MDX = React = JS
 
 Le contenu en `MDX` est très puissant puisqu'en bout de ligne il est converti en JavaScript exécutable dans le client et sur le serveur. Ce serait probablement facile d'inclure quelques lignes dans un `MDX` et effacer le fichier `/etc/passwd` - m'enfin, j'exagère un peu mais ça s'exécute dans le contexte de celui qui a lancé le serveur.
 
@@ -59,7 +59,7 @@ Si vous connaissez `markdown` vous serez à l'aise ici. `MDX` c'est grosso-modo 
 
 Utilisez la syntaxe `[TEXTE](URL)` habituelle pour faire des liens. Vous pouvez liez à des pages externes ou à des pages sous `/custom/` uniquement. Si vous tentez de lier à `/p2` par exemple ça risque d'exploser. Vous pouvez créer des liens vers des pages qui n'existent pas pour les créer éventuellement.
 
-### Composantes React
+### Composants React
 
 Le but d'utiliser `MDX` c'est de pouvoir composer les pages à partir de plusieurs morceaux dynamiques et éventuellement ajouter à cela un système de collection pour établir des _layouts_ et _presets_.
 

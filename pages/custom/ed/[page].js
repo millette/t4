@@ -60,11 +60,11 @@ const CustomEditPage = ({ MDXContent, page, errorCode }) => {
 CustomEditPage.propTypes = {
   MDXContent: PropTypes.string.isRequired,
   page: PropTypes.string.isRequired,
+  errorCode: PropTypes.number,
 }
 
 CustomEditPage.getInitialProps = async (o) => {
   const {
-    req,
     res,
     query: { page },
   } = o

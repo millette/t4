@@ -9,16 +9,28 @@ import "isomorphic-unfetch"
 // self
 import Clock from "../../components/clock"
 
-const a = ({ href, children }) =>
-  href.indexOf("://") === -1 ? (
+const a = ({ href, children }) => {
+  if (href.indexOf("://") !== -1) {
+    return (
+      <a target="_blank" rel="noopener noreferrer" href={href}>
+        <sup>⧉</sup>&nbsp;{children}
+      </a>
+    )
+  }
+
+  if (href.indexOf("/custom/"))
+    return (
+      <Link href={href}>
+        <a>{children}</a>
+      </Link>
+    )
+
+  return (
     <Link as={href} href="/custom/[page]">
       <a>{children}</a>
     </Link>
-  ) : (
-    <a target="_blank" rel="noopener noreferrer" href={href}>
-      <sup>⧉</sup>&nbsp;{children}
-    </a>
   )
+}
 
 a.propTypes = {
   href: PropTypes.string.isRequired,

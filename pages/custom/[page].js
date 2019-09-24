@@ -20,18 +20,28 @@ const a = ({ href, children }) =>
     </a>
   )
 
+a.propTypes = {
+  href: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+}
+
 const components = { Clock, a }
 
 const AnError = ({ statusCode, page }) => {
   if (statusCode !== 404) return <ErrorPage statusCode={statusCode} />
   return (
     <div>
-      <code>{page}</code> doesn't exist.{" "}
+      <code>{page}</code> does not exist.{" "}
       <Link href={`/custom/ed/${page}`}>
         <a>Create it?</a>
       </Link>
     </div>
   )
+}
+
+AnError.propTypes = {
+  statusCode: PropTypes.number.isRequired,
+  page: PropTypes.string.isRequired,
 }
 
 const CustomPage = ({ MDXContent, page, errorCode }) => {
@@ -60,11 +70,11 @@ const CustomPage = ({ MDXContent, page, errorCode }) => {
 CustomPage.propTypes = {
   MDXContent: PropTypes.string.isRequired,
   page: PropTypes.string.isRequired,
+  errorCode: PropTypes.number,
 }
 
 CustomPage.getInitialProps = async (o) => {
   const {
-    req,
     res,
     query: { page },
   } = o

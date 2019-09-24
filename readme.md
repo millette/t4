@@ -53,7 +53,7 @@ Le contenu en `MDX` est très puissant puisqu'en bout de ligne il est converti e
 
 > MDX is an authorable format that lets you seamlessly write JSX in your Markdown documents. You can import components, such as interactive charts or alerts, and embed them within your content. This makes writing long-form content with components a blast 🚀.
 
-Si vous connaissez `markdown` vous serez à l'aise ici. `MDX` c'est grosso-modo du Markdown dans lequel on peut utiliser des composantes `React`. Une fois processé, un fichier MDX devient lui-même un composante `React`.
+Si vous connaissez `markdown` vous serez à l'aise ici. `MDX` c'est grosso-modo du Markdown dans lequel on peut utiliser des composants `React`. Une fois processé, un fichier MDX devient lui-même un composant `React`.
 
 ### Liens
 
@@ -63,7 +63,7 @@ Utilisez la syntaxe `[TEXTE](URL)` habituelle pour faire des liens. Vous pouvez 
 
 Le but d'utiliser `MDX` c'est de pouvoir composer les pages à partir de plusieurs morceaux dynamiques et éventuellement ajouter à cela un système de collection pour établir des _layouts_ et _presets_.
 
-Pour le moment, le seul exemple inclus est le composante `<Clock>` qui permet d'afficher l'heure en temps réel. Voyez la page <http://localhost:3000/custom/c666> pour un exemple _live_ et <http://localhost:3000/custom/ed/c666> pour consulter la source du `MDX` et l'éditer. Ce n'est pas du tout utile sauf pour montrer que ça fonctionne comme prévu.
+Pour le moment, le seul exemple inclus est le composant `<Clock>` qui permet d'afficher l'heure en temps réel. Voyez la page <http://localhost:3000/custom/c666> pour un exemple _live_ et <http://localhost:3000/custom/ed/c666> pour consulter la source du `MDX` et l'éditer. Ce n'est pas du tout utile sauf pour montrer que ça fonctionne comme prévu.
 
 Bientôt, on aura `<Profile>` pour afficher des profiles utilisateurs, `<TaggedWith>` pour énumérer des contenus avec un mot-clé et d'autres trucs plus pratiques les uns que les autres.
 

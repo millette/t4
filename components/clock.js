@@ -1,9 +1,10 @@
 // npm
 import { useState, useEffect } from "react"
+import PropTypes from "prop-types"
 
 const interval = 1000
 
-const Clock = (props) => {
+const Clock = ({ kind }) => {
   const now = Date.now()
   const [t1, setT1] = useState(now)
   const [t2, setT2] = useState(now)
@@ -18,12 +19,16 @@ const Clock = (props) => {
 
   return (
     <div>
-      <h3>I am a {props.kind || ""} clock</h3>
+      <h3>I am a {kind || ""} clock</h3>
       <div>Correct: {new Date(t1).toISOString().slice(0, -5)}</div>
       <div>Buggy: {new Date(t2).toISOString().slice(0, -5)}</div>
       <div>diff: {diff}</div>
     </div>
   )
+}
+
+Clock.propTypes = {
+  kind: PropTypes.string,
 }
 
 export default Clock

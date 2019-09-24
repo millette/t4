@@ -48,10 +48,6 @@ const CustomEditPage = ({ MDXContent, page, errorCode }) => {
         <p>
           <button>Save</button>
         </p>
-        <p>
-          Note that only pages in <code>/custom/</code> can be edited and linked
-          to.
-        </p>
       </form>
     </div>
   )

@@ -7,7 +7,7 @@ import PropTypes from "prop-types"
 import "isomorphic-unfetch"
 
 // self
-import Clock from "../../components/clock"
+import { CustomPages, Clock } from "../../components"
 
 const a = ({ href, children }) => {
   if (href.indexOf("://") !== -1) {
@@ -37,7 +37,7 @@ a.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-const components = { Clock, a }
+const components = { CustomPages, Clock, a }
 
 const AnError = ({ statusCode, page }) => {
   if (statusCode !== 404) return <ErrorPage statusCode={statusCode} />

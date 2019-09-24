@@ -1,7 +1,7 @@
 // npm
 import ErrorPage from "next/error"
 import Link from "next/link"
-import MDXRuntime from "mdx-runtime-slim"
+import MDXRuntime from "@mdx-js/runtime"
 import { MDXProvider } from "@mdx-js/react"
 import PropTypes from "prop-types"
 import "isomorphic-unfetch"

@@ -1,7 +1,7 @@
 // npm
 import Link from "next/link"
 
-export default ({ pages }) => {
+export default (pages) => {
   const CustomPages = () => (
     <div>
       <h3>List of Custom Pages</h3>

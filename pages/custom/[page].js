@@ -1,5 +1,5 @@
 // npm
-import ErrorPage from "next/error"
+// import ErrorPage from "next/error"
 import Link from "next/link"
 import MDXRuntime from "@mdx-js/runtime"
 import { MDXProvider } from "@mdx-js/react"
@@ -7,6 +7,7 @@ import PropTypes from "prop-types"
 import "isomorphic-unfetch"
 
 // self
+import ErrorPage from "../_error"
 import { CustomPages, Clock } from "../../components"
 
 const AnError = ({ statusCode, page }) => {
@@ -96,7 +97,8 @@ CustomPage.getInitialProps = async (o) => {
   if (res2.ok) {
     const MDXContent = await res2.text()
     const res3 = await fetch(`http://localhost:3000/api/customs`)
-    const pages = await res3.json()
+    const pagesO = await res3.json()
+    let pages = pagesO.ok && pagesO.pages
     return { MDXContent, page, pages }
   }
 

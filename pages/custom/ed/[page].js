@@ -1,9 +1,11 @@
 // npm
-import ErrorPage from "next/error"
+// import ErrorPage from "next/error"
 import Router from "next/router"
 import Link from "next/link"
 import PropTypes from "prop-types"
 import "isomorphic-unfetch"
+
+import ErrorPage from "../../_error"
 
 const CustomEditPage = ({ MDXContent, page, errorCode }) => {
   if (errorCode) return <ErrorPage statusCode={errorCode} />

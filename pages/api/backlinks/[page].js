@@ -53,23 +53,15 @@ const ApiBacklinks = ({ method, query: { page } }, res) => {
 
     Promise.all(pages.map(readFileP)).then((x) => {
       const y = x.filter(Boolean)
-      const z = [].concat(...y).filter(({ page: p }) => {
-        return p === page
-      })
-      console.log("XXX", z)
+      const z = []
+        .concat(...y)
+        .filter(({ page: p }) => p === page)
+        .map((a) => ({
+          ...a,
+          page: undefined,
+        }))
       res.json(z)
     })
-    /*
-    // const cnt = readFileSync(`docs/custom/${page}.mdx`)
-    readFile(`docs/custom/${page}.mdx`, (err, cnt) => {
-      if (err) {
-        console.log('ERR', err)
-        return res.json([])
-      }
-      const lll = getLinks(cnt)
-      res.json(lll)
-    })
-    */
   })
 }
 

@@ -98,8 +98,7 @@ CustomPage.getInitialProps = async (o) => {
     const MDXContent = await res2.text()
     const res3 = await fetch(`http://localhost:3000/api/customs`)
     const pagesO = await res3.json()
-    let pages = pagesO.ok && pagesO.pages
-    return { MDXContent, page, pages }
+    return { MDXContent, page, pages: pagesO.ok && pagesO.pages }
   }
 
   if (res2.status === 404) {

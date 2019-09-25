@@ -65,7 +65,6 @@ CustomEditPage.getInitialProps = async (o) => {
     query: { page },
   } = o
   // FIXME: guard against system pages: custom, ed, etc.
-  // const res2 = await fetch(`http://localhost:3000/customs/${page}.mdx`)
   const res2 = await fetch(`http://localhost:3000/api/ed/${page}`)
   if (res2.ok) {
     const c = await res2.text()

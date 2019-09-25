@@ -7,7 +7,7 @@ import "isomorphic-unfetch"
 
 // self
 import ErrorPage from "../_error"
-import { CustomPages, Clock } from "../../components"
+import { CustomPages, Clock, Backlinks } from "../../components"
 
 const AnError = ({ statusCode, page }) => {
   if (statusCode !== 404) return <ErrorPage statusCode={statusCode} />
@@ -57,7 +57,7 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
     children: PropTypes.node.isRequired,
   }
 
-  const components = { CustomPages: CustomPages(pages), Clock, a }
+  const components = { CustomPages: CustomPages(pages), Clock, a, Backlinks }
 
   return (
     <MDXProvider components={components}>

@@ -37,10 +37,6 @@ Le mode `build` est plus rapide à l'usage tandis que le mode `dev` permet d'éd
 
 ## Notes
 
-### Écrabouillage des fichiers sous git
-
-Les pages sous `/custom/` sont éditables dans un beau (plain) textarea. Elles sont sauvées dans `public/` qui contient les fichiers publiques. C'est mon _API_ temporairement, vous me pardonnerez.
-
 ### DANGEREUX: MDX = React = JS
 
 Le contenu en `MDX` est très puissant puisqu'en bout de ligne il est converti en JavaScript exécutable dans le client et sur le serveur. Ce serait probablement facile d'inclure quelques lignes dans un `MDX` et effacer le fichier `/etc/passwd` - m'enfin, j'exagère un peu mais ça s'exécute dans le contexte de celui qui a lancé le serveur.
@@ -64,6 +60,8 @@ Utilisez la syntaxe `[TEXTE](URL)` habituelle pour faire des liens. Vous pouvez 
 Le but d'utiliser `MDX` c'est de pouvoir composer les pages à partir de plusieurs morceaux dynamiques et éventuellement ajouter à cela un système de collection pour établir des _layouts_ et _presets_.
 
 Pour le moment, les seuls exemples inclus sont les composants `<Clock>` qui permet d'afficher l'heure en temps réel et `CustomPages` pour énumérer les pages `custom`. Voyez la page <http://localhost:3000/custom/c666> pour un exemple _live_ et <http://localhost:3000/custom/ed/c666> pour consulter la source du `MDX` et l'éditer. Ce n'est pas du tout utile sauf pour montrer que ça fonctionne comme prévu.
+
+**ATTENTION**: prenez soin de soumettre un MDX conforme quand vous éditez. Si vous utilisez des composants React (nos Clock et CustomPages) assurez-vous de fermer tous les tags comme si c'était du xml ou du xhtml. Par exemple, utilisez `<br />` et jamais `<br>`. Pareil avec `<Clock />`, `<CustomPages />` et `<img ... />` pour n'en nommez que quelques uns.
 
 Bientôt, on aura `<Profile>` pour afficher des profiles utilisateurs, `<TaggedWith>` pour énumérer des contenus avec un mot-clé et d'autres trucs plus pratiques les uns que les autres.
 

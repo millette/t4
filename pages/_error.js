@@ -1,12 +1,11 @@
 // npm
 import Link from "next/link"
 import { useRouter } from "next/router"
+import PropTypes from "prop-types"
 import React from "react"
 import AU from "ansi_up"
 
-const ansi_up = new AU()
-
-// <pre>{JSON.stringify(error, null, 2)}</pre>
+const ansiUp = new AU()
 
 const MyError = ({ statusCode, error, m2, page }) => {
   const router = useRouter()
@@ -37,10 +36,17 @@ const MyError = ({ statusCode, error, m2, page }) => {
   )
 }
 
+MyError.propTypes = {
+  statusCode: PropTypes.number,
+  error: PropTypes.object,
+  m2: PropTypes.string,
+  page: PropTypes.string,
+}
+
 MyError.getInitialProps = (o) => {
   const { res, err, asPath } = o
   const statusCode = res ? res.statusCode : err ? err.statusCode : null
-  const m2 = err && ansi_up.ansi_to_html(err.toString())
+  const m2 = err && ansiUp.ansi_to_html(err.toString())
   const page = asPath && !asPath.indexOf("/custom/") && asPath.slice(8)
   return { page, statusCode, error: err, m2 }
 }

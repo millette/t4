@@ -1,5 +1,4 @@
 // npm
-// import ErrorPage from "next/error"
 import Link from "next/link"
 import MDXRuntime from "@mdx-js/runtime"
 import { MDXProvider } from "@mdx-js/react"

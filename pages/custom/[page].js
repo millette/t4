@@ -9,36 +9,6 @@ import "isomorphic-unfetch"
 // self
 import { CustomPages, Clock } from "../../components"
 
-const a = ({ href, children }) => {
-  if (href.indexOf("://") !== -1) {
-    return (
-      <a target="_blank" rel="noopener noreferrer" href={href}>
-        <sup>⧉</sup>&nbsp;{children}
-      </a>
-    )
-  }
-
-  if (href.indexOf("/custom/"))
-    return (
-      <Link href={href}>
-        <a>{children}</a>
-      </Link>
-    )
-
-  return (
-    <Link as={href} href="/custom/[page]">
-      <a>{children}</a>
-    </Link>
-  )
-}
-
-a.propTypes = {
-  href: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-}
-
-const components = { CustomPages, Clock, a }
-
 const AnError = ({ statusCode, page }) => {
   if (statusCode !== 404) return <ErrorPage statusCode={statusCode} />
   return (
@@ -56,8 +26,38 @@ AnError.propTypes = {
   page: PropTypes.string.isRequired,
 }
 
-const CustomPage = ({ MDXContent, page, errorCode }) => {
+const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
   if (errorCode) return <AnError page={page} statusCode={errorCode} />
+
+  const a = ({ href, children }) => {
+    if (href.indexOf("://") !== -1) {
+      return (
+        <a target="_blank" rel="noopener noreferrer" href={href}>
+          <sup>⧉</sup>&nbsp;{children}
+        </a>
+      )
+    }
+
+    if (href.indexOf("/custom/"))
+      return (
+        <Link href={href}>
+          <a>{children}</a>
+        </Link>
+      )
+
+    return (
+      <Link as={href} href="/custom/[page]">
+        <a>{children}</a>
+      </Link>
+    )
+  }
+
+  a.propTypes = {
+    href: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
+  }
+
+  const components = { CustomPages: CustomPages(pages), Clock, a }
 
   return (
     <MDXProvider components={components}>
@@ -93,8 +93,10 @@ CustomPage.getInitialProps = async (o) => {
   // FIXME: guard against system pages: custom, ed, etc.
   const res2 = await fetch(`http://localhost:3000/customs/${page}.mdx`)
   if (res2.ok) {
-    const c = await res2.text()
-    return { MDXContent: c, page }
+    const MDXContent = await res2.text()
+    const res3 = await fetch(`http://localhost:3000/api/customs`)
+    const pages = await res3.json()
+    return { MDXContent, page, pages }
   }
 
   if (res2.status === 404) {

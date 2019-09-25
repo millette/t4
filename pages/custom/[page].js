@@ -83,6 +83,7 @@ CustomPage.propTypes = {
   MDXContent: PropTypes.string.isRequired,
   page: PropTypes.string.isRequired,
   errorCode: PropTypes.number,
+  pages: PropTypes.array.isRequired,
 }
 
 CustomPage.getInitialProps = async (o) => {

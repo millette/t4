@@ -1,29 +1,21 @@
 // npm
-import "isomorphic-unfetch"
-import { useState, useEffect } from "react"
+import Link from "next/link"
 
-const CustomPages = () => {
-  const [pages, setPages] = useState([])
+const CustomPages = ({ pages }) => () => (
+  <div>
+    <h3>List of Custom Pages</h3>
+    <ul>
+      {pages &&
+        pages.length > 0 &&
+        pages.map(({ source, href }) => (
+          <li key={source}>
+            <Link href="/custom/[page]" as={href}>
+              <a>{source}</a>
+            </Link>
+          </li>
+        ))}
+    </ul>
+  </div>
+)
 
-  useEffect(async () => {
-    const res2 = await fetch(`http://localhost:3000/api/customs`)
-    const pages = await res2.json()
-    setPages(pages)
-  }, [])
-
-  return (
-    <div>
-      <h3>List of Custom Pages</h3>
-      <pre>{JSON.stringify(pages, null, 2)}</pre>
-    </div>
-  )
-}
-
-/*
-CustomPages.getInitialProps = async () => {
-  const res2 = await fetch(`http://localhost:3000/api/customs`)
-  const pages = await res2.json()
-  return { pages }
-}
-*/
 export default CustomPages

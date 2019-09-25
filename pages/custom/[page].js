@@ -14,7 +14,7 @@ const AnError = ({ statusCode, page }) => {
   return (
     <div>
       <code>{page}</code> does not exist.{" "}
-      <Link href={`/custom/ed/${page}`}>
+      <Link href="/custom/ed/[page]" as={`/custom/ed/${page}`}>
         <a>Create it?</a>
       </Link>
     </div>

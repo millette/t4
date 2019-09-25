@@ -70,7 +70,7 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
         </p>
         <MDXRuntime>{MDXContent}</MDXRuntime>
         <p>
-          <Link href={`/custom/ed/${page}`}>
+          <Link href="/custom/ed/[page]" as={`/custom/ed/${page}`}>
             <a>Edit</a>
           </Link>
         </p>

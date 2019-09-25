@@ -59,7 +59,9 @@
     "next": "^9.0.6",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react-dom": "^16.9.0",
+    "remark": "^11.0.1",
+    "unist-util-select": "^2.0.2"
   },
   "devDependencies": {
     "babel-eslint": "^10.0.3",

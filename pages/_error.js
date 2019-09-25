@@ -47,7 +47,7 @@ MyError.getInitialProps = (o) => {
   const { res, err, asPath } = o
   const statusCode = res ? res.statusCode : err ? err.statusCode : null
   const m2 = err && ansiUp.ansi_to_html(err.toString())
-  const page = asPath && !asPath.indexOf("/custom/") && asPath.slice(8)
+  const page = asPath && !asPath.indexOf("/custom/") ? asPath.slice(8) : ""
   return { page, statusCode, error: err, m2 }
 }
 

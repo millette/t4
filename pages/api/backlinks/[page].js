@@ -52,9 +52,8 @@ const ApiBacklinks = ({ method, query: { page } }, res) => {
       .filter(notSelf(page))
 
     Promise.all(pages.map(readFileP)).then((x) => {
-      const y = x.filter(Boolean)
       const z = []
-        .concat(...y)
+        .concat(...x.filter(Boolean))
         .filter(({ page: p }) => p === page)
         .map((a) => ({
           ...a,

@@ -1,6 +1,6 @@
 // npm
 import Link from "next/link"
-import { Fragment } from "react"
+import { createElement, Fragment } from "react"
 import MDXRuntime from "@mdx-js/runtime"
 import { MDXProvider } from "@mdx-js/react"
 import PropTypes from "prop-types"
@@ -58,8 +58,10 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
     children: PropTypes.node.isRequired,
   }
 
+  const CustomPages = CustomPagesFactory(pages)
+
   const components = {
-    CustomPages: CustomPagesFactory(pages),
+    CustomPages,
     Clock,
     a,
     Backlinks,
@@ -67,18 +69,38 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
 
   const CustomTags = () => (
     <dl>
-      {Object.keys(components).map(
-        (tag) =>
-          components[tag].tournemain &&
-          components[tag].tournemain.description && (
-            <Fragment key={tag}>
-              <dt>
-                <code>&lt;{tag} /&gt;</code>
-              </dt>
-              <dd>{components[tag].tournemain.description}</dd>
-            </Fragment>
-          )
-      )}
+      {Object.keys(components).map((tag) => {
+        if (
+          !components[tag].tournemain ||
+          !components[tag].tournemain.description
+        )
+          return
+        return (
+          <Fragment key={tag}>
+            <dt>
+              <code>&lt;{tag} /&gt;</code>
+            </dt>
+            <dd>{components[tag].tournemain.description}</dd>
+
+            {tag !== "CustomTags" && (
+              <dd>
+                <details>
+                  <summary>Démo</summary>
+                  {tag === "Clock" ? (
+                    <Clock />
+                  ) : tag === "CustomPages" ? (
+                    <CustomPages />
+                  ) : tag === "Backlinks" ? (
+                    <Backlinks />
+                  ) : (
+                    <i>Not here</i>
+                  )}
+                </details>
+              </dd>
+            )}
+          </Fragment>
+        )
+      })}
     </dl>
   )
 

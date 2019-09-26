@@ -45,4 +45,8 @@ const Backlinks = () => {
   )
 }
 
+Backlinks.tournemain = {
+  description: "Lists pages linking back to the current page.",
+}
+
 export default Backlinks

@@ -34,6 +34,8 @@ const Clock = ({ kind }) => {
   )
 }
 
+Clock.tournemain = { description: "Shows a real-time clock." }
+
 Clock.propTypes = {
   kind: PropTypes.string,
 }

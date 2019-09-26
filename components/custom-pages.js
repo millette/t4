@@ -19,5 +19,6 @@ export default (pages) => {
     </div>
   )
   CustomPages.displayName = "custom-pages-component"
+  CustomPages.tournemain = { description: "Lists all available custom pages." }
   return CustomPages
 }

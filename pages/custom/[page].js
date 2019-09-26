@@ -9,6 +9,8 @@ import "isomorphic-unfetch"
 import ErrorPage from "../_error"
 import { CustomPages, Clock, Backlinks } from "../../components"
 
+console.log("process.env.PORT:", process.env.PORT)
+
 const AnError = ({ statusCode, page }) => {
   if (statusCode !== 404) return <ErrorPage statusCode={statusCode} />
   return (
@@ -88,14 +90,19 @@ CustomPage.propTypes = {
 
 CustomPage.getInitialProps = async (o) => {
   const {
+    req,
     res,
     query: { page },
   } = o
   // FIXME: guard against system pages: custom, ed, etc.
-  const res2 = await fetch(`http://localhost:3000/api/ed/${page}`)
+  const res2 = await fetch(
+    req ? `http://localhost:3000/api/ed/${page}` : `/api/ed/${page}`
+  )
   if (res2.ok) {
     const MDXContent = await res2.text()
-    const res3 = await fetch(`http://localhost:3000/api/customs`)
+    const res3 = await fetch(
+      req ? "http://localhost:3000/api/customs" : "/api/customs"
+    )
     const pagesO = await res3.json()
     return { MDXContent, page, pages: pagesO.ok && pagesO.pages }
   }

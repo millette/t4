@@ -2,6 +2,7 @@
   "name": "t4",
   "version": "0.0.0",
   "scripts": {
+    "analyze": "ANALYZE=true next build",
     "dev": "next",
     "build": "next build",
     "clean": "rm -fr out .next",
@@ -64,6 +65,7 @@
     "unist-util-select": "^2.0.2"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^9.0.6",
     "babel-eslint": "^10.0.3",
     "healthier": "^3.2.0",
     "husky": "^2.7.0",

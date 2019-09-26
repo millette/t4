@@ -94,8 +94,7 @@ CustomPage.getInitialProps = async (o) => {
   } = o
   // FIXME: guard against system pages: custom, ed, etc.
 
-  console.log("REQ", req && Object.keys(req))
-  console.log("RES", res && Object.keys(res))
+  console.log("REQ", req && req.url)
 
   const res2 = await fetch(
     req ? `http://localhost:3000/api/ed/${page}` : `/api/ed/${page}`

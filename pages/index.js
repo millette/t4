@@ -4,15 +4,17 @@ import Link from "next/link"
 const FrontPage = () => (
   <div>
     <p>
-      Hello{" "}
       <Link href="/p2">
-        <a>Earth</a>
+        <a>Static Page 2</a>
       </Link>
     </p>
     <p>
-      See{" "}
-      <Link href="/custom/[page]" as="/custom/more">
-        <a>more</a>
+      <Link href="/custom/[page]" as="/custom/demo-entry">
+        <a>Entrez dans la démo</a>
+      </Link>{" "}
+      ou{" "}
+      <Link href="/custom/[page]" as="/custom/front-t4">
+        <a>voyez un début de réplique du wiki de tournemain sur github</a>
       </Link>
       .
     </p>

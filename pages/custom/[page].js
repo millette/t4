@@ -112,9 +112,8 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
     <MDXProvider components={components}>
       <div>
         <p>
-          Hello{" "}
-          <Link href="/p2">
-            <a>Earth</a>
+          <Link href="/">
+            <a>Site frontpage</a>
           </Link>
         </p>
         <MDXRuntime>{MDXContent}</MDXRuntime>

@@ -63,11 +63,14 @@ CustomEditPage.propTypes = {
 
 CustomEditPage.getInitialProps = async (o) => {
   const {
+    req,
     res,
     query: { page },
   } = o
   // FIXME: guard against system pages: custom, ed, etc.
-  const res2 = await fetch(`http://localhost:3000/api/ed/${page}`)
+  const res2 = await fetch(
+    req ? `http://localhost:3030/api/ed/${page}` : `/api/ed/${page}`
+  )
   if (res2.ok) {
     const c = await res2.text()
     return { MDXContent: c, page }

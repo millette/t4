@@ -1,5 +1,6 @@
 // npm
 import Link from "next/link"
+import { Fragment } from "react"
 import MDXRuntime from "@mdx-js/runtime"
 import { MDXProvider } from "@mdx-js/react"
 import PropTypes from "prop-types"
@@ -7,7 +8,7 @@ import "isomorphic-unfetch"
 
 // self
 import ErrorPage from "../_error"
-import { CustomPages, Clock, Backlinks } from "../../components"
+import { CustomPagesFactory, Clock, Backlinks } from "../../components"
 
 const AnError = ({ statusCode, page }) => {
   if (statusCode !== 404) return <ErrorPage statusCode={statusCode} />
@@ -57,7 +58,33 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
     children: PropTypes.node.isRequired,
   }
 
-  const components = { CustomPages: CustomPages(pages), Clock, a, Backlinks }
+  const components = {
+    CustomPages: CustomPagesFactory(pages),
+    Clock,
+    a,
+    Backlinks,
+  }
+
+  const CustomTags = () => (
+    <dl>
+      {Object.keys(components).map(
+        (tag) =>
+          components[tag].tournemain &&
+          components[tag].tournemain.description && (
+            <Fragment key={tag}>
+              <dt>
+                <code>&lt;{tag} /&gt;</code>
+              </dt>
+              <dd>{components[tag].tournemain.description}</dd>
+            </Fragment>
+          )
+      )}
+    </dl>
+  )
+
+  CustomTags.tournemain = { description: "Lists all available custom tags." }
+
+  components.CustomTags = CustomTags
 
   return (
     <MDXProvider components={components}>

@@ -11,11 +11,18 @@ const Clock = ({ kind }) => {
   const [diff, setDiff] = useState(0)
 
   useEffect(() => {
-    setInterval(() => setT1(Date.now()), interval)
-    setInterval(() => setT2((x) => x + interval), interval)
+    const t1b = setInterval(() => setT1(Date.now()), interval)
+    const t2b = setInterval(() => setT2((x) => x + interval), interval)
+
+    return () => {
+      clearInterval(t1b)
+      clearInterval(t2b)
+    }
   }, [])
 
-  useEffect(() => setDiff(t2 - t1), [t1, t2])
+  useEffect(() => {
+    setDiff(t2 - t1)
+  }, [t1, t2])
 
   return (
     <div>

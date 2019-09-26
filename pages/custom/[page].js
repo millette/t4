@@ -94,14 +94,11 @@ CustomPage.getInitialProps = async (o) => {
   } = o
   // FIXME: guard against system pages: custom, ed, etc.
 
-  const res2 = await fetch(
-    req ? `http://localhost:3030/api/ed/${page}` : `/api/ed/${page}`
-  )
+  const urlBase = req ? `http://${req.headers.host}` : ""
+  const res2 = await fetch(`${urlBase}/api/ed/${page}`)
   if (res2.ok) {
     const MDXContent = await res2.text()
-    const res3 = await fetch(
-      req ? "http://localhost:3030/api/customs" : "/api/customs"
-    )
+    const res3 = await fetch(`${urlBase}/api/customs`)
     const pagesO = await res3.json()
     return { MDXContent, page, pages: pagesO.ok && pagesO.pages }
   }

@@ -18,9 +18,6 @@ const Backlinks = () => {
     })
   }, [])
 
-  // <pre>{JSON.stringify(backlinks, null, 2)}</pre>
-  // <pre>{JSON.stringify(b, null, 2)}</pre>
-
   return (
     <div>
       <h3>Pages linking here</h3>

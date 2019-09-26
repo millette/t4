@@ -51,16 +51,19 @@ const ApiBacklinks = ({ method, query: { page } }, res) => {
       .map(output)
       .filter(notSelf(page))
 
-    Promise.all(pages.map(readFileP)).then((x) => {
-      const z = []
-        .concat(...x.filter(Boolean))
-        .filter(({ page: p }) => p === page)
-        .map((a) => ({
-          ...a,
-          page: undefined,
-        }))
-      res.json(z)
-    })
+    Promise.all(pages.map(readFileP))
+      .then((x) =>
+        res.json(
+          []
+            .concat(...x.filter(Boolean))
+            .filter(({ page: p }) => p === page)
+            .map((a) => ({
+              ...a,
+              page: undefined,
+            }))
+        )
+      )
+      .catch((err) => res.status(500).json({ error: err }))
   })
 }
 

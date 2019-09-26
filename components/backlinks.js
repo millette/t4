@@ -31,7 +31,13 @@ const Backlinks = () => {
               <Link href="/custom/[page]" as={`/custom/${b.from}`}>
                 <a>{b.from}</a>
               </Link>{" "}
-              with text "{b.text}" {b.title && `and title "${b.title}"`}
+              with text <b>{b.text}</b>{" "}
+              {b.title && (
+                <>
+                  {" "}
+                  and title <i>{b.title}</i>
+                </>
+              )}
             </li>
           ))}
         </ul>

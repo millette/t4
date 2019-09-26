@@ -1,6 +1,6 @@
 // npm
 import Link from "next/link"
-import { createElement, Fragment } from "react"
+import { Fragment } from "react"
 import MDXRuntime from "@mdx-js/runtime"
 import { MDXProvider } from "@mdx-js/react"
 import PropTypes from "prop-types"

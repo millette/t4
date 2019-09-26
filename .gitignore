@@ -1,5 +1,4 @@
 node_modules/
 .next/
-docs/
 .env
 t4.code-workspace

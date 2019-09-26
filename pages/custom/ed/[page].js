@@ -50,6 +50,11 @@ const CustomEditPage = ({ MDXContent, page, errorCode }) => {
         <p>
           <button>Save</button>
         </p>
+        <p>
+          <Link href="/custom/[page" as={`/custom/${page}`}>
+            <a>Cancel</a>
+          </Link>
+        </p>
       </form>
     </div>
   )

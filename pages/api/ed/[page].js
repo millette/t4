@@ -11,7 +11,7 @@ const ApiCustomPage = ({ method, body, query: { page } }, res) => {
         return res
           .status(error.code === "ENOENT" ? 404 : 500)
           .json({ ...error, message: error.message })
-      res.setHeader("Content-Type", "text/plain") // text/mdx is the official mime type
+      res.setHeader("Content-Type", "text/plain; charset=utf-8") // text/mdx is the official mime type
       pipeline(
         createReadStream("", { encoding: "utf8", fd }),
         res,

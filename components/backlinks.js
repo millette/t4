@@ -2,6 +2,7 @@
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
+import PropTypes from "prop-types"
 import "isomorphic-unfetch"
 
 const Backlinks = ({ of }) => {
@@ -43,6 +44,10 @@ const Backlinks = ({ of }) => {
       )}
     </div>
   )
+}
+
+Backlinks.propTypes = {
+  of: PropTypes.string,
 }
 
 Backlinks.tournemain = {

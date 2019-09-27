@@ -3,6 +3,7 @@
 import Router from "next/router"
 import Link from "next/link"
 import PropTypes from "prop-types"
+import { Button } from "rebass"
 import "isomorphic-unfetch"
 
 import ErrorPage from "../../_error"
@@ -47,14 +48,15 @@ const CustomEditPage = ({ MDXContent, page, errorCode }) => {
           name="cnt"
           defaultValue={MDXContent}
         />
-        <p>
-          <button>Save</button>
-        </p>
-        <p>
-          <Link href="/custom/[page" as={`/custom/${page}`}>
-            <a>Cancel</a>
-          </Link>
-        </p>
+        <br />
+        <Button color="primary" bg="green" mr={2}>
+          Save
+        </Button>
+        <Link href="/custom/[page]" as={`/custom/${page}`}>
+          <Button color="primary" bg="red" as="a">
+            Cancel
+          </Button>
+        </Link>
       </form>
     </div>
   )

@@ -4,14 +4,14 @@ import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import "isomorphic-unfetch"
 
-const Backlinks = () => {
+const Backlinks = ({ of }) => {
   const {
     query: { page },
   } = useRouter()
   const [backlinks, setBacklinks] = useState()
 
   useEffect(() => {
-    fetch(`/api/backlinks/${page}`).then(async (res) => {
+    fetch(`/api/backlinks/${of || page}`).then(async (res) => {
       if (!res.ok) return setBacklinks([])
       const j = await res.json()
       setBacklinks(j)
@@ -20,7 +20,7 @@ const Backlinks = () => {
 
   return (
     <div>
-      <h3>Pages linking here</h3>
+      <h3>Pages linking {of ? `to ${of}` : "here"}</h3>
       {backlinks ? (
         <ul>
           {backlinks.map((b) => (

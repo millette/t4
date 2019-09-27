@@ -1,5 +1,5 @@
 // npm
-// import LinkNextjs from "next/link"
+import LinkNextjs from "next/link"
 import App from "next/app"
 import { MDXProvider } from "@mdx-js/react"
 import { ThemeProvider, Styled, ColorMode } from "theme-ui"
@@ -7,9 +7,6 @@ import { toTheme } from "@theme-ui/typography"
 import typoTheme from "typography-theme-wikipedia"
 import { Heading, Text, Box, Link } from "rebass"
 import PropTypes from "prop-types"
-
-// self
-// import Nav from "../components/nav.mdx"
 
 const theme = toTheme(typoTheme)
 
@@ -65,7 +62,6 @@ p.propTypes = {
   children: PropTypes.node.isRequired,
 }
 
-/*
 const a = ({ href, children }) =>
   href.indexOf("://") === -1 ? (
     <LinkNextjs href={href} passHref>
@@ -81,7 +77,6 @@ a.propTypes = {
   href: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
 }
-*/
 
 const components = {
   HeHa,
@@ -90,19 +85,8 @@ const components = {
   h3,
   h4,
   p,
-  // a,
+  a,
 }
-
-/*
- */
-
-/*
-          <MDXProvider components={components}>
-            <Box mx={5}>
-              {nav}
-            </Box>
-          </MDXProvider>
-*/
 
 class MyApp extends App {
   render() {

@@ -1,0 +1,33 @@
+# Page d'accueil - Template
+
+![Jehan Alain](https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Jehan_Alain_1938.jpg/250px-Jehan_Alain_1938.jpg)
+Jehan Alain (premier Alain sur Google Images)
+
+Bonjour Alain,
+
+Voici ton espace pour bien tester `t4`. Tu peux y créer des pages en visitant simplement la page, par exemple [Alain, page 2](/custom/alain-p2) à la seule condition que cette page soit sous `/custom/`. C'est une limitation temporaire de `t4`,
+
+Le contenu des pages doit respecter le Markdown, plus précisément MDX qui permet l'insertion de tags _custom_. La première apparition de [markdown](https://daringfireball.net/projects/markdown/basics) remonte a 2004 et laissait plusieurs _corner cases_ sans les clarifier, ce qui donna naissance à des centaines de variations de Markdown.
+
+Avec le temps est venu [CommonMark](https://commonmark.org/help/) pour s'entendre sur un _spec_ bien que cela comporte encore quelques coins sombres.
+
+Enfin est venu [MDX](https://github.com/mdx-js/specification) qui construit sur CommonMark et ajoute le support des composants React. C'est un _game changer_ comme on dit.
+
+Un composant React peut avoir un état (state), par exemple cet horloge:
+
+<Clock />
+
+`t4` est configuré pour supporter quelques composants sur mesure. Les voici:
+
+<CustomTags />
+
+Notez entre autre que `<Backlinks>` peut aussi énumérer les liens vers n'importe quelle autre page, pas seulement la courante. Par exemple, voici les autres pages (s'il y en a) liant à [la catégorie Alain](/custom/cat-alain):
+
+<Backlinks of="cat-alain" />
+
+<hr />
+
+## Catégories
+
+- [template](/custom/template)
+- [Frontpage](/custom/frontpages)

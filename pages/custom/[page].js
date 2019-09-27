@@ -1,9 +1,13 @@
 // npm
 import Link from "next/link"
+// import LinkNextjs from "next/link"
 import { Fragment } from "react"
 import MDXRuntime from "@mdx-js/runtime"
 import { MDXProvider } from "@mdx-js/react"
 import PropTypes from "prop-types"
+// import { Link } from "rebass"
+// import { Button, Link as LinkR } from "rebass"
+import { Button } from "rebass"
 import "isomorphic-unfetch"
 
 // self
@@ -15,8 +19,10 @@ const AnError = ({ statusCode, page }) => {
   return (
     <div>
       <code>{page}</code> does not exist.{" "}
-      <Link href="/custom/ed/[page]" as={`/custom/ed/${page}`}>
-        <a>Create it?</a>
+      <Link href="/custom/ed/[page]" as={`/custom/ed/${page}`} passHref>
+        <Button color="primary" bg="orange" as="a">
+          Create it?
+        </Button>
       </Link>
     </div>
   )
@@ -118,8 +124,10 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
         </p>
         <MDXRuntime>{MDXContent}</MDXRuntime>
         <p>
-          <Link href="/custom/ed/[page]" as={`/custom/ed/${page}`}>
-            <a>Edit</a>
+          <Link href="/custom/ed/[page]" as={`/custom/ed/${page}`} passHref>
+            <Button color="primary" bg="green" as="a">
+              Edit
+            </Button>
           </Link>
         </p>
       </div>

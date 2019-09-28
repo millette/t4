@@ -65,6 +65,7 @@
     "react-dom": "^16.10.1",
     "rebass": "^4.0.6",
     "remark": "^11.0.1",
+    "sse-channel": "^3.1.1",
     "theme-ui": "^0.2.43",
     "typography-theme-wikipedia": "^0.16.19",
     "unist-util-select": "^2.0.2"

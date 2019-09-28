@@ -1,4 +1,5 @@
 node_modules/
 .next/
+hasura-intro.mp4
 .env
 t4.code-workspace

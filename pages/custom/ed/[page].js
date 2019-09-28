@@ -49,10 +49,10 @@ const CustomEditPage = ({ MDXContent, page, errorCode }) => {
           defaultValue={MDXContent}
         />
         <br />
-        <Button color="primary" bg="green" mr={2}>
+        <Button sx={{ cursor: "pointer" }} color="primary" bg="green" mr={2}>
           Save
         </Button>
-        <Link href="/custom/[page]" as={`/custom/${page}`}>
+        <Link href="/custom/[page]" as={`/custom/${page}`} passHref>
           <Button color="primary" bg="red" as="a">
             Cancel
           </Button>

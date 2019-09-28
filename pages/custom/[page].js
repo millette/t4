@@ -64,7 +64,7 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
     children: PropTypes.node.isRequired,
   }
 
-  const CustomPages = CustomPagesFactory(pages)
+  const CustomPages = CustomPagesFactory(pages || [])
 
   const components = {
     CustomPages,
@@ -139,7 +139,7 @@ CustomPage.propTypes = {
   MDXContent: PropTypes.string.isRequired,
   page: PropTypes.string.isRequired,
   errorCode: PropTypes.number,
-  pages: PropTypes.array.isRequired,
+  pages: PropTypes.array, // .isRequired,
 }
 
 CustomPage.getInitialProps = async (o) => {

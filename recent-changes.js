@@ -6,7 +6,7 @@ const changes = (em) => {
       em.emit("recent-changes", {
         evt,
         name: name.slice(12, -4),
-        date: new Date().toISOString(),
+        date: Date.now(),
       })
   })
 }

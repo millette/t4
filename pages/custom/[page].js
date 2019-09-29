@@ -120,7 +120,7 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
   useEffect(() => {
     const src = new EventSource("/api/sse/changes")
     src.onerror = (e) => console.log("ouille", e)
-    src.onopen = (e) => console.log("OPEN", e)
+    // src.onopen = (e) => console.log("OPEN", e)
     src.onmessage = (e) => {
       const d = JSON.parse(e.data)
 

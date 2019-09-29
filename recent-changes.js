@@ -5,7 +5,7 @@ const changes = (em) => {
     if (name.split(".").slice(-1)[0] === "mdx")
       em.emit("recent-changes", {
         evt,
-        name: name.slice(12),
+        name: name.slice(12, -4),
         date: new Date().toISOString(),
       })
   })

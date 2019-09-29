@@ -60,6 +60,7 @@
     "ansi_up": "^4.0.4",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.0.7",
+    "node-watch": "^0.6.3",
     "prop-types": "^15.7.2",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",

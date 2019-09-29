@@ -1,7 +1,7 @@
 // npm
 import Link from "next/link"
 // import LinkNextjs from "next/link"
-import { Fragment } from "react"
+import { Fragment, useState, useEffect } from "react"
 import MDXRuntime from "@mdx-js/runtime"
 import { MDXProvider } from "@mdx-js/react"
 import PropTypes from "prop-types"
@@ -114,6 +114,42 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
 
   components.CustomTags = CustomTags
 
+  const [mostRecentChange, setMostRecentChange] = useState()
+  const [recentChanges, setRecentChanges] = useState([])
+
+  useEffect(() => {
+    const src = new EventSource("/api/sse/changes")
+    src.onerror = (e) => console.log("ouille", e)
+    src.onopen = (e) => console.log("OPEN", e)
+    src.onmessage = (e) => {
+      const d = JSON.parse(e.data)
+
+      setMostRecentChange(d)
+    }
+
+    return () => {
+      if (!src) return
+      src.onmessage = undefined
+      src.close()
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!mostRecentChange) return
+    const c = recentChanges.slice()
+    c.unshift(mostRecentChange)
+    if (c.length <= 5) setRecentChanges(c)
+    else setRecentChanges(c.slice(0, 5))
+
+    /* 
+      setRecentChanges((c) => {
+        c.unshift(mostRecentChange)
+        if (c.length > 5) c.pop()
+        return c
+      })
+      */
+  }, [mostRecentChange])
+
   return (
     <MDXProvider components={components}>
       <div>
@@ -122,6 +158,16 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
             <a>Site frontpage</a>
           </Link>
         </p>
+        {recentChanges.length > 0 && (
+          <ol>
+            {recentChanges.map(({ evt, name, date }) => (
+              <li key={date}>
+                {" "}
+                {date} - {evt} - {name}{" "}
+              </li>
+            ))}
+          </ol>
+        )}
         <MDXRuntime>{MDXContent}</MDXRuntime>
         <p>
           <Link href="/custom/ed/[page]" as={`/custom/ed/${page}`} passHref>

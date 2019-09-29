@@ -58,7 +58,19 @@ dataProvider.on("random", function(randomData) {
   randomChannel.send({ data: randomData })
 })
 
+var changesChannel = new SseChannel({
+  historySize: 5,
+  // cors: { origins: ["*"] },
+  pingInterval: 60 * 1000,
+  jsonEncode: true,
+})
+
+dataProvider.on("recent-changes", function(randomData) {
+  changesChannel.send({ data: randomData })
+})
+
 module.exports = {
   sysInfo: sysInfoChannel,
   random: randomChannel,
+  changes: changesChannel,
 }

@@ -8,7 +8,11 @@ var os = require("os")
 var events = require("events")
 var EventEmitter = events.EventEmitter
 
+const changes = require("./recent-changes")
+
 var emitter = new EventEmitter()
+
+changes(emitter)
 
 setInterval(function broadcastSysInfo() {
   emitter.emit("sysinfo", {

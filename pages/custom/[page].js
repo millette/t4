@@ -162,8 +162,11 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
           <ol>
             {recentChanges.map(({ evt, name, date }) => (
               <li key={date}>
-                {" "}
-                {date} - {evt} - {name}{" "}
+                {new Date(date).toLocaleString()}:{" "}
+                <Link href="/custom/[page]" as={`/custom/${name}`}>
+                  <a>{name}</a>
+                </Link>{" "}
+                (<i>{evt}</i>)
               </li>
             ))}
           </ol>

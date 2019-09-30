@@ -5,12 +5,19 @@
 - Postgres / GraphQL / [Hasura](https://hasura.io/)
 - NodeJS / React / [Next.js](https://nextjs.org/)
 - Micro-services (séparer les API du front-end)
+- S3 compatible storage [MinIO](https://min.io/) pour fichiers, images, pdf...
 
 ### Hasura (API/DB)
 
 Je mettrai bientôt une instance d'Hasura en ligne mais d'ici là jetez un coup d'oeil (right-click + fullscreen) à ce court vidéo:
 
 <video controls width="720" src="/static/hasura-intro.mp4" />
+
+### Minio
+
+Pour les fichiers attachés, les vidéo, images, bref, tout ce qui ne va pas dans la DB.
+
+On peut utiliser `nginx` pour _resizer_ les images et les conserver dans un cache en proxy à `MinIO`.
 
 ## Theming
 

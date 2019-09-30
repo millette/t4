@@ -1,0 +1,62 @@
+# Structure du projet
+
+Au premier niveau on trouvera ces fichiers et répertoires (se terminent par un `/`) intéressants:
+
+```
+TOP/
+├── components/
+├── pages/
+└── package.json
+```
+
+`package.json` est le fichier standard `npm` qui énumére les _packages_ dont on dépend.
+
+Voyons maintenant les deux sous-répertoires.
+
+## components/
+
+Ce répertoire contient les composants React disponibles au contenu `MDX`:
+
+```
+components/
+├── backlinks.js
+├── clock.js
+└── custom-pages.js
+```
+
+## pages/
+
+Ce répertoire contient toutes les pages disponibles sous les _path_ `/p2` et `/` pour `index.js` ainsi que les sous-répertoires `/api/` et `/custom/`. Ces chemins sont tous publiquements disponibles aux URL correspondants.
+
+Les fichiers qui commencent par un `_` sont utilisés pour étendre les fonctionnalités de base de `nextjs`.
+
+Les chemins sous `/api/` sont retournés directement sans le contexte HTML tandis que les chemins sous `/pages/` sont _wrappés_ dans `_app.js` et `_document.js` pour insérer le `<html><head>...<body>` usuel.
+
+Remarquez aussi que certains noms de fichiers sont entourés de _square brackets_ `[]`, comme `[page].js` sous `/api/backlinks/` par exemple. Ici, `page` devient une variable disponible au script. Ainsi, quand on demande `/api/backlinks/BoBo` le script `/api/backlinks/[page].js` est appelé et la variable `page` prend la valeur `BoBo`. C'est pour cette raison que tous les URL commencent par `/custom/` dans la démo.
+
+```
+pages/
+├── api/
+│   ├── backlinks/
+│   │   └── [page].js
+│   ├── ed/
+│   │   └── [page].js
+│   ├── sse/
+│   │   └── [channel].js
+│   └── customs.js
+├── custom/
+│   ├── ed/
+│   │   └── [page].js
+│   └── [page].js
+├── _app.js
+├── _document.js
+├── _error.js
+├── index.js
+└── p2.js
+```
+
+---
+
+## Catégories
+
+- [Dogfooding T4](/custom/df-t4)

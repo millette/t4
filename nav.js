@@ -4,7 +4,8 @@ const nav = (em) => {
   // console.log('NAV-SETUP')
   watch("navs", (evt, name) => {
     // console.log('NAVS', evt, name)
-    if (evt === "update") em.emit("nav", name.replace("navs/", "/custom/"))
+    // if (evt === "update") em.emit("nav", name.replace("navs/", "/custom/"))
+    if (evt === "update") em.emit("nav", name.slice(5))
     /*
     if (name.split(".").slice(-1)[0] === "mdx")
       em.emit("recent-changes", {

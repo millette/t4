@@ -136,8 +136,9 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
       // const d = JSON.parse(e.data)
       // console.log('DDD-typeof', typeof d)
       // console.log('DDD', d)
-      setMostRecentChange2(data)
-      Router.push(data)
+      const elU = `/custom/${data}`
+      setMostRecentChange2(elU)
+      Router.push("/custom/[page]", elU)
     }
 
     return () => {

@@ -139,6 +139,9 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
       const elU = `/custom/${data}`
       setMostRecentChange2(elU)
       Router.push("/custom/[page]", elU)
+      setTimeout(() => {
+        setMostRecentChange2()
+      }, 1000)
     }
 
     return () => {
@@ -186,6 +189,7 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
         </p>
         {mostRecentChange2 && (
           <p>
+            <audio autoPlay src="/static/drip.opus" />
             One moment, navigating to <code>{mostRecentChange2}</code>...
           </p>
         )}

@@ -1,5 +1,6 @@
 // npm
 import Link from "next/link"
+import Router from "next/router"
 // import LinkNextjs from "next/link"
 import { Fragment, useState, useEffect } from "react"
 import MDXRuntime from "@mdx-js/runtime"
@@ -116,6 +117,8 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
 
   const [mostRecentChange, setMostRecentChange] = useState()
   const [recentChanges, setRecentChanges] = useState([])
+  const [mostRecentChange2, setMostRecentChange2] = useState()
+  // const [recentChanges2, setRecentChanges2] = useState()
 
   useEffect(() => {
     const src = new EventSource("/api/sse/changes")
@@ -123,14 +126,29 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
     // src.onopen = (e) => console.log("OPEN", e)
     src.onmessage = (e) => {
       const d = JSON.parse(e.data)
-
       setMostRecentChange(d)
     }
 
+    const src2 = new EventSource("/api/sse/nav")
+    src2.onerror = (e) => console.log("ouille", e)
+    // src.onopen = (e) => console.log("OPEN", e)
+    src2.onmessage = ({ data }) => {
+      // const d = JSON.parse(e.data)
+      // console.log('DDD-typeof', typeof d)
+      // console.log('DDD', d)
+      setMostRecentChange2(data)
+      Router.push(data)
+    }
+
     return () => {
-      if (!src) return
-      src.onmessage = undefined
-      src.close()
+      if (src) {
+        src.onmessage = undefined
+        src.close()
+      }
+      if (src2) {
+        src2.onmessage = undefined
+        src2.close()
+      }
     }
   }, [])
 
@@ -141,7 +159,7 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
     if (c.length <= 5) setRecentChanges(c)
     else setRecentChanges(c.slice(0, 5))
 
-    /* 
+    /*
       setRecentChanges((c) => {
         c.unshift(mostRecentChange)
         if (c.length > 5) c.pop()
@@ -149,6 +167,13 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
       })
       */
   }, [mostRecentChange])
+
+  /*
+  useEffect(() => {
+    if (!mostRecentChange2) return
+    setRecentChanges2(mostRecentChange2)
+  }, [mostRecentChange2])
+  */
 
   return (
     <MDXProvider components={components}>
@@ -158,6 +183,12 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
             <a>Site frontpage</a>
           </Link>
         </p>
+        {mostRecentChange2 && (
+          <p>
+            One moment, navigating to <code>{mostRecentChange2}</code>...
+          </p>
+        )}
+
         {recentChanges.length > 0 && (
           <ol>
             {recentChanges.map(({ evt, name, date }) => (

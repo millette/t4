@@ -69,8 +69,21 @@ dataProvider.on("recent-changes", function(randomData) {
   changesChannel.send({ data: randomData })
 })
 
+var navChannel = new SseChannel({
+  historySize: 5,
+  // cors: { origins: ["*"] },
+  pingInterval: 60 * 1000,
+  // jsonEncode: true,
+})
+
+dataProvider.on("nav", function(randomData) {
+  // navChannel.send({ data: randomData })
+  navChannel.send(randomData)
+})
+
 module.exports = {
   sysInfo: sysInfoChannel,
   random: randomChannel,
   changes: changesChannel,
+  nav: navChannel,
 }

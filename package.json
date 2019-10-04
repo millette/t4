@@ -58,6 +58,7 @@
     "@mdx-js/runtime": "^1.5.0",
     "@theme-ui/typography": "^0.2.40",
     "ansi_up": "^4.0.4",
+    "basic-auth": "^2.0.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.0.7",
     "node-watch": "^0.6.3",

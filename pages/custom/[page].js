@@ -8,7 +8,7 @@ import { MDXProvider } from "@mdx-js/react"
 import PropTypes from "prop-types"
 // import { Link } from "rebass"
 // import { Button, Link as LinkR } from "rebass"
-import { Button } from "rebass"
+import { Button, Flex, Box } from "rebass"
 import "isomorphic-unfetch"
 
 // self
@@ -68,6 +68,8 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
   const CustomPages = CustomPagesFactory(pages || [])
 
   const components = {
+    Flex,
+    Box,
     CustomPages,
     Clock,
     a,

@@ -2,7 +2,29 @@
 import { open, writeFile, createReadStream } from "fs"
 import { pipeline } from "stream"
 
-const ApiCustomPage = ({ method, body, query: { page } }, res) => {
+// npm
+import auth from "basic-auth"
+
+// self
+import accounts from "../../../passwords.json"
+
+const validCreds = (req, res, prompt = "Login please.") => {
+  const creds = auth(req)
+  if (creds) {
+    const { name, pass } = creds
+    if (accounts[name] === pass) return name
+  }
+  res.status(401).setHeader("WWW-Authenticate", 'Basic realm="tournemain"')
+  res.send(prompt)
+}
+
+const ApiCustomPage = (req, res) => {
+  const {
+    method,
+    body,
+    query: { page },
+  } = req
+
   if (method !== "POST" && method !== "GET")
     return res.status(405).json({ error: "Method Not Allowed", method })
   if (method === "GET") {
@@ -20,6 +42,9 @@ const ApiCustomPage = ({ method, body, query: { page } }, res) => {
       )
     })
   } else {
+    const name = validCreds(req, res, "Avez-vous un mot de passe valide?")
+    if (!name) return
+
     const { cnt } = body
     writeFile(`docs/custom/${page}.mdx`, cnt, "utf8", (error) => {
       if (error)

@@ -16,7 +16,8 @@ git checkout -b NAME-run-0
 # Ensuite, on peut aller à la branche master: git checkout master
 # ou revenir à notre branche: git checkout NAME-run-0
 # sans spécifier le '-b' qui créer une nouvelle branche.
-npm install
+npm install # les deps nodejs de notre serveur
+cp passwords.json.sample passwords.json # éditer à votre guise
 npm run build # patienter 1 minute... C'est plus rapide les prochaines fois à cause du cache
 npm run start
 # Lancer Firefox ou whatever sur http://localhost:3000/ et hop!

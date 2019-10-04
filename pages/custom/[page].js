@@ -67,6 +67,9 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
 
   const CustomPages = CustomPagesFactory(pages || [])
 
+  Flex.tournemain = { description: "Responsive flexbox layout component" }
+  Box.tournemain = { description: "Responsive box-model layout component" }
+
   const components = {
     Flex,
     Box,

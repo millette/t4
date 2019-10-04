@@ -1,13 +1,109 @@
 # Apprendre le _theming_
 
-Maintenant que la base fonctionne, j'ai intégré pour le _theming_
+À propos du theming et de mon approche moderne et sophistiquée ;-)
 
-- [Theme UI](https://theme-ui.com/) - Build consistent, themeable React apps based on constraint-based design principles
-- [Rebass](https://rebassjs.org/) - Rebass React primitive UI components built with Styled System
-- [Styled System](https://styled-system.com/) - Style props for rapid UI development
-- [Typography.js](http://kyleamathews.github.io/typography.js/) - A powerful toolkit for building websites with beautiful design.
+Alain demandait:
 
-<hr />
+> # Est-ce que j'aurai accès au CSS afin de pouvoir embellir mes pages ?
+>
+> # Est-ce que je pourrai modifier le CSS vu que c'est radicalement différent
+>
+> qu'avant ?
+
+Comme c'est écrit dans nos docs, j'aimerais bien que le theming adopte
+cette approche:
+
+- [Theme UI](https://theme-ui.com/) - Build consistent, themeable
+  React apps based on constraint-based design principles
+- [Rebass](https://rebassjs.org/) - Rebass React primitive UI
+  components built with Styled System
+- [Styled System](https://styled-system.com/) - Style props for rapid
+  UI development
+- [Typography.js](http://kyleamathews.github.io/typography.js/) - A
+  powerful toolkit for building websites with beautiful design.
+
+Rebass par exemple, c'est un peu notre nouveau Bootstrap/Bulma:
+
+https://rebassjs.org/getting-started
+
+Et des exemples plus avancés:
+
+https://rebassjs.org/recipes
+
+Rebass repose sur Theme-UI
+
+https://theme-ui.com/
+
+## Un exemple tiré de leur frontpage
+
+### Create your theme
+
+```
+export default {
+  colors: {
+    text: '#000',
+    background: '#fff',
+    primary: 'tomato',
+  },
+  fonts: {
+    body: 'system-ui, sans-serif',
+    heading: '"Avenir Next", sans-serif',
+  },
+}
+```
+
+### Style your UI
+
+```
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
+export default props => (
+  <h1
+    sx={{
+      color: 'primary',
+      fontFamily: 'heading',
+    }}>
+    Hello
+  </h1>
+)
+```
+
+Et la motivation derrière cette approche "par contraintes":
+
+https://theme-ui.com/motivation
+
+Si tu regardes aussi en haut à droite de la page où c'est écrit
+"Github" et "Light", tu peux cliquer sur "Light" et changer le thème
+parmi une sélection.
+
+Pour ma part, j'avoue tout de suite que je n'ai pas d'expérience
+avec cette approche, mais ça permettrait, si je comprends bien, aux
+utilisateurs/admin du site de modifier l'apparence du site, des pages,
+d'une seule page, en ajustant quelques variables bien placées.
+
+On peut arriver au même résultat avec le CSS soit en permettant
+d'éditer le CSS lui-même ou bien d'utiliser des variables dans le CSS
+(ou via un préprocesseur comme SASS mais là faut "recompiler" le CSS)
+mais ça prend plus de discipline que si on a une interface en
+arborescence pour modifier des valeurs - ce que permettra une approche
+à la Theme-UI.
+
+Je ne vais pas bloquer là dessus non plus, mais ça faisait partie de
+ma vision originale.
+
+De façon intérimaire, je pourrais probablement permettre (sans devoir
+écrire trop de code) d'attacher un fichier CSS au site où à une page
+particulière,et permettre l'édition "raw" de ce fichier CSS via
+l'interface web (sans variables ni rien de cela).
+
+Je vous pris tous les deux de lire les références énumérées ci-haut
+(pas tout d'un coup!) avant de vous y opposer :-)
+
+Enfin, cette approche pour le style fait partie d'une mouvence et
+plusieurs projets s'enrichissent (fonctionnellement parlant)
+mutuellement à bâtir les uns sur les autres.
+
+---
 
 ## Catégories
 

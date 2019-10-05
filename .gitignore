@@ -1,4 +1,5 @@
 node_modules/
+docs/.dat/
 .next/
 hasura-intro.mp4
 .env

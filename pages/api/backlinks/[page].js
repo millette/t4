@@ -6,7 +6,7 @@ import remark from "remark"
 import select from "unist-util-select"
 
 const fix = ({ url, title, children }) => {
-  if (url.indexOf("/custom/")) return false
+  if (url.indexOf("/custom/")) return
   const obj = { page: url.slice(8) }
   if (title) obj.title = title
   const text = children[0] && children[0].type === "text" && children[0].value

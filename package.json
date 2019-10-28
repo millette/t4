@@ -69,7 +69,7 @@
     "sse-channel": "^3.1.1",
     "theme-ui": "^0.2.44",
     "typography-theme-wikipedia": "^0.16.19",
-    "unist-util-select": "^2.0.2"
+    "unist-util-select": "^3.0.0"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^9.1.1",

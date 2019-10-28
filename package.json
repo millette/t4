@@ -52,7 +52,7 @@
   },
   "homepage": "https://github.com/millette/t4#readme",
   "dependencies": {
-    "@emotion/core": "^10.0.21",
+    "@emotion/core": "^10.0.22",
     "@mdx-js/react": "^1.5.1",
     "@mdx-js/runtime": "^1.5.1",
     "@theme-ui/typography": "^0.2.40",

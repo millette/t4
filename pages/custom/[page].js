@@ -35,6 +35,70 @@ AnError.propTypes = {
 }
 
 const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
+  const [mostRecentChange, setMostRecentChange] = useState()
+  const [recentChanges, setRecentChanges] = useState([])
+  const [mostRecentChange2, setMostRecentChange2] = useState()
+  // const [recentChanges2, setRecentChanges2] = useState()
+
+  useEffect(() => {
+    const src = new window.EventSource("/api/sse/changes")
+    src.onerror = (e) => console.log("ouille", e)
+    // src.onopen = (e) => console.log("OPEN", e)
+    src.onmessage = (e) => {
+      const d = JSON.parse(e.data)
+      setMostRecentChange(d)
+    }
+
+    const src2 = new window.EventSource("/api/sse/nav")
+    src2.onerror = (e) => console.log("ouille", e)
+    // src.onopen = (e) => console.log("OPEN", e)
+    src2.onmessage = ({ data }) => {
+      // const d = JSON.parse(e.data)
+      // console.log('DDD-typeof', typeof d)
+      // console.log('DDD', d)
+      const elU = `/custom/${data}`
+      setMostRecentChange2(elU)
+      Router.push("/custom/[page]", elU)
+      setTimeout(() => {
+        setMostRecentChange2()
+      }, 1000)
+    }
+
+    return () => {
+      if (src) {
+        src.onmessage = undefined
+        src.close()
+      }
+      if (src2) {
+        src2.onmessage = undefined
+        src2.close()
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!mostRecentChange) return
+    const c = recentChanges.slice()
+    c.unshift(mostRecentChange)
+    if (c.length <= 5) setRecentChanges(c)
+    else setRecentChanges(c.slice(0, 5))
+
+    /*
+      setRecentChanges((c) => {
+        c.unshift(mostRecentChange)
+        if (c.length > 5) c.pop()
+        return c
+      })
+      */
+  }, [mostRecentChange])
+
+  /*
+  useEffect(() => {
+    if (!mostRecentChange2) return
+    setRecentChanges2(mostRecentChange2)
+  }, [mostRecentChange2])
+  */
+
   if (errorCode) return <AnError page={page} statusCode={errorCode} />
 
   const a = ({ href, children }) => {
@@ -119,70 +183,6 @@ const CustomPage = ({ MDXContent, page, pages, errorCode }) => {
   CustomTags.tournemain = { description: "Lists all available custom tags." }
 
   components.CustomTags = CustomTags
-
-  const [mostRecentChange, setMostRecentChange] = useState()
-  const [recentChanges, setRecentChanges] = useState([])
-  const [mostRecentChange2, setMostRecentChange2] = useState()
-  // const [recentChanges2, setRecentChanges2] = useState()
-
-  useEffect(() => {
-    const src = new EventSource("/api/sse/changes")
-    src.onerror = (e) => console.log("ouille", e)
-    // src.onopen = (e) => console.log("OPEN", e)
-    src.onmessage = (e) => {
-      const d = JSON.parse(e.data)
-      setMostRecentChange(d)
-    }
-
-    const src2 = new EventSource("/api/sse/nav")
-    src2.onerror = (e) => console.log("ouille", e)
-    // src.onopen = (e) => console.log("OPEN", e)
-    src2.onmessage = ({ data }) => {
-      // const d = JSON.parse(e.data)
-      // console.log('DDD-typeof', typeof d)
-      // console.log('DDD', d)
-      const elU = `/custom/${data}`
-      setMostRecentChange2(elU)
-      Router.push("/custom/[page]", elU)
-      setTimeout(() => {
-        setMostRecentChange2()
-      }, 1000)
-    }
-
-    return () => {
-      if (src) {
-        src.onmessage = undefined
-        src.close()
-      }
-      if (src2) {
-        src2.onmessage = undefined
-        src2.close()
-      }
-    }
-  }, [])
-
-  useEffect(() => {
-    if (!mostRecentChange) return
-    const c = recentChanges.slice()
-    c.unshift(mostRecentChange)
-    if (c.length <= 5) setRecentChanges(c)
-    else setRecentChanges(c.slice(0, 5))
-
-    /*
-      setRecentChanges((c) => {
-        c.unshift(mostRecentChange)
-        if (c.length > 5) c.pop()
-        return c
-      })
-      */
-  }, [mostRecentChange])
-
-  /*
-  useEffect(() => {
-    if (!mostRecentChange2) return
-    setRecentChanges2(mostRecentChange2)
-  }, [mostRecentChange2])
-  */
 
   // sound from https://freesound.org/people/Mafon2/sounds/371270/
 

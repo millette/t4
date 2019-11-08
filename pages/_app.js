@@ -1,6 +1,5 @@
 // npm
 import LinkNextjs from "next/link"
-import App from "next/app"
 import { MDXProvider } from "@mdx-js/react"
 import { ThemeProvider, Styled, ColorMode } from "theme-ui"
 import { toTheme } from "@theme-ui/typography"
@@ -88,23 +87,17 @@ const components = {
   a,
 }
 
-class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props
-    // const nav = this.props.router.pathname !== "/" && <Nav />
-    return (
-      <ThemeProvider theme={theme}>
-        <ColorMode />
-        <Styled.root>
-          <MDXProvider components={components}>
-            <Box mx={5}>
-              <Component {...pageProps} />
-            </Box>
-          </MDXProvider>
-        </Styled.root>
-      </ThemeProvider>
-    )
-  }
-}
+const MyApp = ({ Component, pageProps }) => (
+  <ThemeProvider theme={theme}>
+    <ColorMode />
+    <Styled.root>
+      <MDXProvider components={components}>
+        <Box mx={5}>
+          <Component {...pageProps} />
+        </Box>
+      </MDXProvider>
+    </Styled.root>
+  </ThemeProvider>
+)
 
 export default MyApp

@@ -53,13 +53,13 @@
   "homepage": "https://github.com/millette/t4#readme",
   "dependencies": {
     "@emotion/core": "^10.0.27",
-    "@mdx-js/react": "^1.5.1",
-    "@mdx-js/runtime": "^1.5.1",
+    "@mdx-js/react": "^1.5.3",
+    "@mdx-js/runtime": "^1.5.3",
     "@theme-ui/typography": "^0.2.46",
     "ansi_up": "^4.0.4",
     "basic-auth": "^2.0.1",
     "isomorphic-unfetch": "^3.0.0",
-    "next": "^9.1.4",
+    "next": "^9.1.7",
     "node-watch": "^0.6.3",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -72,7 +72,7 @@
     "unist-util-select": "^3.0.0"
   },
   "devDependencies": {
-    "@next/bundle-analyzer": "^9.1.4",
+    "@next/bundle-analyzer": "^9.1.7",
     "babel-eslint": "^10.0.3",
     "healthier": "^3.2.0",
     "husky": "^3.1.0",

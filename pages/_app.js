@@ -100,4 +100,9 @@ const MyApp = ({ Component, pageProps }) => (
   </ThemeProvider>
 )
 
+MyApp.propTypes = {
+  Component: PropTypes.any.isRequired,
+  pageProps: PropTypes.object.isRequired,
+}
+
 export default MyApp

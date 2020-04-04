@@ -74,8 +74,8 @@
     "@next/bundle-analyzer": "^9.3.4",
     "babel-eslint": "^10.0.3",
     "healthier": "^3.2.0",
-    "husky": "^3.1.0",
-    "lint-staged": "^9.3.0",
+    "husky": "^4.2.3",
+    "lint-staged": "^10.1.1",
     "prettier": "^2.0.2"
   }
 }

@@ -51,7 +51,7 @@
   },
   "homepage": "https://github.com/millette/t4#readme",
   "dependencies": {
-    "@emotion/core": "^10.0.27",
+    "@emotion/core": "^10.0.28",
     "@mdx-js/react": "^1.5.3",
     "@mdx-js/runtime": "^1.5.3",
     "@theme-ui/typography": "^0.2.46",
@@ -68,7 +68,7 @@
     "sse-channel": "^3.1.1",
     "theme-ui": "^0.2.52",
     "typography-theme-wikipedia": "^0.16.19",
-    "unist-util-select": "^3.0.0"
+    "unist-util-select": "^3.0.1"
   },
   "devDependencies": {
     "@next/bundle-analyzer": "^9.3.4",
